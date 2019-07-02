@@ -4,6 +4,6 @@
   "useTabs": false,
   "trailingComma": "none",
   "eslintIntegration": true,
-  "semi": true,
+  "semi": false,
   "singleQuote": true
 }
