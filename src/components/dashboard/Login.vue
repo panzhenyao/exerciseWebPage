@@ -1,8 +1,8 @@
 <template>
   <el-container>
-    <div class="container">
+    <el-main class="container">
       <div class="login-banner"></div>
-    </div>
+    </el-main>
   </el-container>
 </template>
 
@@ -20,7 +20,9 @@ export default {
 
 <style lang='less' scoped>
 .container {
+  width: 100%;
   height: 788px;
+  background-color: #1299fa;
   .login-banner {
     position: absolute;
     bottom: 0;
