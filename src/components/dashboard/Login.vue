@@ -1,6 +1,9 @@
 <template>
   <el-container>
     <el-main class="container">
+      <el-card>
+        
+      </el-card>
       <div class="login-banner"></div>
     </el-main>
   </el-container>
@@ -9,13 +12,13 @@
 <script>
 export default {
   data() {
-    return {};
+    return {}
   },
 
   methods: {},
 
   created() {}
-};
+}
 </script>
 
 <style lang='less' scoped>
@@ -30,6 +33,16 @@ export default {
     width: 633px;
     height: 435px;
     background: url('../../assets/img/login_banner_ele.png') no-repeat;
+  }
+  .el-card {
+    position: relative;
+    top: 198px;
+    left: 181px;
+
+    width: 475px;
+    height: 397px;
+
+    background-color: #f5f5f5;
   }
 }
 </style>
