@@ -12,6 +12,7 @@ import {
   Menu,
   Submenu,
   MenuItem,
+  MenuItemGroup,
   Breadcrumb,
   BreadcrumbItem,
   Card,
@@ -58,6 +59,7 @@ Vue.use(Pagination)
 Vue.use(Menu)
 Vue.use(Submenu)
 Vue.use(MenuItem)
+Vue.use(MenuItemGroup)
 // 麵包屑導航
 Vue.use(Breadcrumb)
 Vue.use(BreadcrumbItem)
