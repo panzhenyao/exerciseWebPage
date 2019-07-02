@@ -19,7 +19,6 @@ export default {
 <style lang='less' scoped>
 .container {
   height: 788px;
-
   .login-banner {
     position: absolute;
     bottom: 0;
