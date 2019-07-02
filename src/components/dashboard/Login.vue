@@ -2,7 +2,11 @@
   <el-container>
     <el-main class="container">
       <el-card>
-        
+        <el-form label-position="right" ref="form">
+          <el-form-item label="活动名称">
+            <el-input ></el-input>
+          </el-form-item>
+        </el-form>
       </el-card>
       <div class="login-banner"></div>
     </el-main>
@@ -39,10 +43,12 @@ export default {
     top: 198px;
     left: 181px;
 
-    width: 475px;
+    width: 435px;
     height: 397px;
+    padding: 20px;
 
     background-color: #f5f5f5;
+    z-index: 999;
   }
 }
 </style>
