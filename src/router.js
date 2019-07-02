@@ -7,6 +7,8 @@ import Login from './components/dashboard/Login.vue';
 import Home from './components/dashboard/Home.vue';
 // 后台企业模块
 import Users from './components/user/User.vue';
+// 面试技巧
+import Articles from './components/articles/Articles.vue'
 
 Vue.use(Router);
 
@@ -18,7 +20,10 @@ export default new Router({
       path: '/home',
       component: Home,
       redirect: '/users',
-      children: [{ path: '/users', component: Users }]
+      children: [
+        { path: '/users', component: Users },
+        { path: '/articles', component: Articles },
+      ]
     }
   ]
 });
