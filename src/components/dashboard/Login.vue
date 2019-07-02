@@ -1,7 +1,9 @@
 <template>
-  <div class="container">
-    <div class="login-banner"></div>
-  </div>
+  <el-container>
+    <div class="container">
+      <div class="login-banner"></div>
+    </div>
+  </el-container>
 </template>
 
 <script>
