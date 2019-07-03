@@ -9,6 +9,7 @@ import Home from './components/dashboard/Home.vue'
 import Users from './components/user/User.vue'
 import Articles from './components/articles/Articles.vue'
 import Subjects from './components/subjects/Subjects.vue'
+import Directorys from './components/subjects/Directorys.vue'
 
 Vue.use(Router)
 
@@ -24,6 +25,8 @@ export default new Router({
         { path: '/users', component: Users },
         { path: '/articles', component: Articles },
         { path: '/subjects', component: Subjects },
+        { path: '/directorys', component: Directorys }
+      
       ]
     }
   ]
