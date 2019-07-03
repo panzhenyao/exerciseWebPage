@@ -3,7 +3,7 @@
     <!-- 添加用户按钮 -->
     <el-row>
       <el-col>
-        <el-button type="primary" class="el-icon-plus">新增标签</el-button>
+        <el-button type="primary" class="el-icon-plus">新增用户名</el-button>
       </el-col>
     </el-row>
     <el-card class="box-card">
@@ -30,13 +30,24 @@
     <!-- 用户表格内容 -->
     <el-card>
       <el-table :data="usersData" style="width: 100%">
-        <el-table-column type="index" label="序号" width="150" align="center"></el-table-column>
-        <el-table-column prop="name" label="标签名称" width="150" align="center"></el-table-column>
-        <el-table-column prop="author" label="创建者" width="150" align="center"></el-table-column>
-        <el-table-column prop="date" label="创建日期" width="220" align="center"></el-table-column>
-        <el-table-column prop="taskNum" label="面试题数量" width="160" align="center"></el-table-column>
-        <el-table-column prop="status" label="状态" width="150" align="center"></el-table-column>
-        <el-table-column label="操作" align="center"></el-table-column>
+        <el-table-column prop="id" label="序号" width="150" align="center"></el-table-column>
+        <el-table-column prop="username" label="用户名" width="150" align="center"></el-table-column>
+        <el-table-column prop="role" label="角色" width="150" align="center"></el-table-column>
+        <el-table-column prop="permission_group_title" label="来源" width="220" align="center"></el-table-column>
+        <el-table-column prop="create_time" label="创建日期" width="160" align="center">
+          <template slot-scope="scope">{{ scope.row.create_time | dateformat }}</template>
+        </el-table-column>
+        <el-table-column prop="introduction" label="备注" width="150" align="center"></el-table-column>
+        <el-table-column prop="is_deleted" label="状态" align="center"></el-table-column>
+        <el-table-column label="操作" align="center">
+          <!--  -->
+          <el-button type="primary" icon="el-icon-edit" circle size="mini"></el-button>
+          <!-- 禁用 -->
+          <el-button type="warning" icon="el-icon-minus
+" circle size="mini"></el-button>
+          <!-- 删除功能 -->
+          <el-button type="danger" icon="el-icon-delete" circle size="mini"></el-button>
+        </el-table-column>
       </el-table>
       <!-- 分页 -->
       <div class="block">
@@ -47,7 +58,7 @@
           :page-sizes="[5, 10, 20, 30]"
           :page-size="pageSize"
           layout="prev, pager,sizes, next, jumper"
-          :total="400"
+          :total="total"
         ></el-pagination>
       </div>
     </el-card>
@@ -66,16 +77,37 @@ export default {
       usersData: [],
       // 分页功能数据
       currentPage: 0,
-      pageSize: 5
+      pageSize: 5,
+      total: 0
     }
   },
 
   methods: {
-    handleSizeChange() {},
-    handleCurrentChange() {}
+    handleSizeChange(pageSize) {
+      this.pageSize = pageSize
+      this.getUsersTable()
+    },
+    handleCurrentChange(CurrentPage) {
+      this.currentPage = currentPage
+      this.getUsersTable()
+    },
+    // 获取用户信息列表
+    async getUsersTable() {
+      const { data: res } = await this.$http.get('/users', {
+        params: {
+          page: this.currentPage,
+          pagesize: this.pageSize,
+          keyword: ''
+        }
+      })
+      this.usersData = res.list
+      this.total = res.counts
+    }
   },
 
-  created() {}
+  created() {
+    this.getUsersTable()
+  }
 }
 </script>
 
@@ -94,6 +126,6 @@ export default {
 }
 .el-pagination {
   display: flex;
-  justify-content: center
+  justify-content: center;
 }
 </style>

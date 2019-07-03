@@ -7,6 +7,7 @@ import Login from './components/dashboard/Login.vue'
 import Home from './components/dashboard/Home.vue'
 // 后台企业模块
 import Users from './components/user/User.vue'
+// 文章页面
 import Articles from './components/articles/Articles.vue'
 
 Vue.use(Router)
@@ -38,12 +39,12 @@ router.beforeEach((to, from, next) => {
   }
   return next()
 })
-router.afterEach((to, from, next) => {
-  window.scrollTo(0, 0)
-  const tokenStr = window.sessionStorage.getItem('token')
-  if (!tokenStr) {
-    return next('/login')
-  }
-})
+// router.afterEach((to, from, next) => {
+//   window.scrollTo(0, 0)
+//   const tokenStr = window.sessionStorage.getItem('token')
+//   if (!tokenStr) {
+//     return next('/login')
+//   }
+// })
 
 export default router

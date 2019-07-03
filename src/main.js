@@ -12,6 +12,20 @@ import './assets/css/global.css'
 import axios from 'axios'
 
 Vue.config.productionTip = false
+// 配置过滤器
+// 引入过滤器
+Vue.filter('dateformat', function (originValue) {
+  const date = new Date(originValue)
+  const y = date.getFullYear()
+  const m = (date.getMonth() + 1 + '').padStart(2, '0')
+  const d = (date.getDate() + '').padStart(2, '0')
+
+  const hh = (date.getHours() + '').padStart(2, '0')
+  const mm = (date.getMinutes() + '').padStart(2, '0')
+  const ss = (date.getSeconds() + '').padStart(2, '0')
+  return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+})
+
 
 // axios 默认配置
 axios.defaults.baseURL =
