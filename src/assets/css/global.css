@@ -36,3 +36,11 @@ body,
 .el-submenu__title:hover {
   background-image: linear-gradient(90deg, #1493fa, #01c6fa) !important;
 }
+/* 选择文本时填充色为默认 */
+.el-checkbox__input.is-checked + .el-checkbox__label {
+  color: #606266;
+}
+/* 二维码样式 */
+.erweima-box img {
+  width: 100%;
+}

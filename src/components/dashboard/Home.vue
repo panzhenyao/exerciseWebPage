@@ -105,7 +105,7 @@ export default {
   height: 100%;
 }
 .container-body {
-  margin: 22px 10px 0 10px;
+  margin: 22px 10px;
 }
 .el-header {
   height: 66px;
@@ -174,6 +174,5 @@ export default {
 .el-main {
   height: 704px;
   width: 1190px;
-  background-color: #fff;
 }
 </style>
