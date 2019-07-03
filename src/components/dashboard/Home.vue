@@ -9,16 +9,16 @@
         <el-input class="header_searchBtn" placeholder="请输入内容" prefix-icon="el-icon-search"></el-input>
       </div>
       <div class="header_right">
-        <el-button></el-button>
-        <img src alt />
-        <el-button>退出</el-button>
+        <i class="el-icon-bell"></i>
+        <img class="user-avatar" src="../../assets/img/avatar.png" alt />
+        <span>用户名</span>
+        <el-button class="login-out-Btn">退出</el-button>
       </div>
     </el-header>
-    <el-container>
+    <el-container class="container-body">
       <el-aside width="200px">
         <!-- 侧边栏菜单区域 -->
         <el-menu
-          background-color="#fff"
           text-color="#000"
           unique-opened
           :collapse-transition="false"
@@ -26,20 +26,27 @@
           :default-active="activePath"
         >
           <!-- 一级菜单 -->
-          <el-submenu active-text-color="fff" v-for="item in memuList" :key="item.id">
+          <el-submenu
+            default-active="0"
+            active-text-color="fff"
+            v-for="item in memuList"
+            :key="item.id"
+            :index="item.id + ''"
+          >
             <template slot="title">
               <!-- 图标 -->
-              <i></i>
+              <i class="el-icon-eleme"></i>
               <!-- 文本 -->
               <span>{{ item.authName }}</span>
             </template>
             <!-- 二级菜单 -->
             <el-menu-item
-              active-text-color="87919b"
+              text-color="#000"
+              active-text-color="#fff"
               :index="'/' + subItem.path"
               v-for="subItem in item.children"
               :key="subItem.id"
-              @click="saveNavState('/' + subItem.path)"
+              @click="saveNavState( item.id ,'/' + subItem.path)"
             >
               <template slot="title">
                 <!-- 文本 -->
@@ -68,24 +75,40 @@ export default {
         }
       ],
       // 是否折叠
-      activePath: ''
+      activePath: '0',
+      isActive: 0,
+      activeClass: ''
     }
   },
 
   methods: {
     // 点击获取主页内容
-    saveNavState() {}
+    saveNavState(path) {
+      this.$router.push(path)
+    },
+    // 移动到items时获取目标id
+    getTargetId(id) {
+      console.log(id)
+    }
   },
+  computed: {},
 
   created() {}
 }
 </script>
 
 <style lang='less' scoped>
-.home_container {
+.el-menu-item:hover {
+  background-image: linear-gradient(90deg, #1493fa, #01c6fa) !important;
+}
+.el_container {
   height: 100%;
 }
+.container-body {
+  margin: 22px 10px;
+}
 .el-header {
+  height: 66px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -95,36 +118,61 @@ export default {
     linear-gradient(#6383e5, #6383e5);
   background-blend-mode: normal, normal;
   font-size: 20px;
-  > div {
+  .header_left {
     display: flex;
-    align-items: center;
-    > span {
-      font-family: SourceHanSansCN-Normal;
-      font-size: 23px;
-      font-weight: normal;
-      font-stretch: normal;
-      letter-spacing: 1px;
-      color: #ffffff;
+
+    > div {
+      width: 200px;
+      display: flex;
+      align-items: center;
+      > span {
+        margin-left: 10px;
+        font-family: SourceHanSansCN-Normal;
+        font-size: 23px;
+        font-weight: normal;
+        font-stretch: normal;
+        letter-spacing: 1px;
+        color: #ffffff;
+      }
     }
   }
-}
-.el-input {
-  margin-left: 30px;
-  .el-input__inner {
-    background-color: #c9d4f6;
-    border-radius: 12px;
+  .header_right {
+    display: flex;
+    align-items: center;
+    > img {
+      margin: 0 12px;
+      width: 40px;
+      height: 40px;
+      background-color: #ebeef2;
+      border-radius: 50%;
+    }
+    > span {
+      font-family: AdobeHeitiStd-Regular;
+      font-size: 12px;
+      line-height: 38px;
+    }
+  }
+  .header_searchBtn {
+    margin-left: 30px;
   }
 }
+
 .el-menu-item {
-  margin-left: 0;
+  padding-left: 50px !important;
 }
 .el-aside {
-  background-color: rgb(51, 55, 68);
+  width: 193px;
+  height: 704px;
+  background-color: #ffffff;
+  box-shadow: 0px 3px 21px 0px rgba(20, 147, 250, 0.29);
+  border-radius: 5px;
+  margin-right: 20px;
   .el-menu {
     border-right: none;
   }
 }
 .el-main {
-  background-color: rgb(234, 237, 241);
+  height: 704px;
+  width: 1190px;
 }
 </style>
