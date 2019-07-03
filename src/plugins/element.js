@@ -1,8 +1,4 @@
 import Vue from 'vue'
-<<<<<<< HEAD
-import { button } from 'element-ui'
-Vue.use(button)
-=======
 import {
   Button,
   Form,
@@ -99,4 +95,3 @@ Vue.use(Image)
 // 全局配置
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm
->>>>>>> 46a3f0ec1a63ae50b8935c74f5dadd5894f9c3cb
