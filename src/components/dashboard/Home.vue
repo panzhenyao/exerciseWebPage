@@ -28,14 +28,14 @@
           <!-- 一级菜单 -->
           <el-submenu
             default-active="0"
-            active-text-color="fff"
+            active-text-color="#fff"
             v-for="item in memuList"
             :key="item.id"
             :index="item.id + ''"
           >
             <template slot="title">
               <!-- 图标 -->
-              <i class="el-icon-eleme"></i>
+              <i :class="isObjecClass[item.id]"></i>
               <!-- 文本 -->
               <span>{{ item.authName }}</span>
             </template>
@@ -72,12 +72,33 @@ export default {
           id: 1,
           authName: '用户管理',
           children: [{ id: 1, authName: '用户列表', path: 'users' }]
+        },
+        {
+          id: 2,
+          authName: '学科管理',
+          children: [
+            { id: 1, authName: '学科管理', path: 'subjects' },
+            { id: 2, authName: '目录管理', path: 'directorys' },
+            { id: 3, authName: '学科管理', path: 'tags' }
+          ]
+        },
+        {
+          id: 3,
+          authName: '面试技巧',
+
+          children: [{ id: 1, authName: '文章列表', path: 'articles' }]
         }
       ],
       // 是否折叠
       activePath: '0',
       isActive: 0,
-      activeClass: ''
+      activeClass: '',
+      // 导航栏图标
+      isObjecClass: {
+        1: 'el-icon-user',
+        2: 'el-icon-office-building',
+        3: 'el-icon-edit-outline'
+      }
     }
   },
 

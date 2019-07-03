@@ -12,14 +12,23 @@
             </div>
           </el-col>
         </el-row>
-        <el-form label-position="right" ref="form">
-          <el-form-item>
-            <el-input prefix-icon placeholder="邮箱/手机号"></el-input>
+        <el-form
+          label-position="right"
+          :model="loginForm"
+          ref="loginFormRef"
+          :rules="loginFormRule"
+        >
+          <el-form-item prop="username">
+            <el-input prefix-icon="el-icon-user" placeholder="邮箱/手机号" v-model="loginForm.username"></el-input>
           </el-form-item>
-          <el-form-item>
+          <el-form-item prop="password">
             <el-row>
               <el-col :span="18">
-                <el-input prefix-icon placeholder="验证码"></el-input>
+                <el-input
+                  prefix-icon="el-icon-search"
+                  v-model="loginForm.password"
+                  placeholder="验证码"
+                ></el-input>
               </el-col>
               <el-col :span="6">
                 <div class="erweima-box">
@@ -29,7 +38,7 @@
             </el-row>
           </el-form-item>
           <el-form-item>
-            <el-checkbox class="additional-box" v-model="checked">
+            <el-checkbox class="additional-box" v-model="isChecked">
               我已阅读并同意
               <span>用户协议</span>和
               <span>隐私条款</span>
@@ -37,7 +46,7 @@
           </el-form-item>
           <!-- 登陆按钮 -->
           <el-form-item class="submitBtn-box">
-            <el-button type="primary">登陆</el-button>
+            <el-button type="primary" @click="sendUserInfo">登陆</el-button>
           </el-form-item>
         </el-form>
       </el-card>
@@ -50,11 +59,40 @@
 export default {
   data() {
     return {
-      isChecked: false
+      isChecked: false,
+      loginForm: {
+        username: '',
+        password: ''
+      },
+      loginFormRule: {
+        username: [
+          { required: true, message: '请输入邮箱名或手机号', trigger: 'blur' },
+          { min: 3, max: 22, message: '长度在 3 到 12 个字符', trigger: 'blur' }
+        ],
+        password: [{ required: true, message: '填写密码', trigger: 'blur' }]
+      }
     }
   },
 
-  methods: {},
+  methods: {
+    // 发起用户请求跳转页面
+    sendUserInfo() {
+      if (!this.isChecked) return this.$message.info('请勾选协议哦~')
+      this.$refs.loginFormRef.validate(async vail => {
+        if (!vail) {
+          return this.$message.info('请正确填入表单信息')
+        }
+        const { data: res } = await this.$http.post(
+          '/frame/login',
+          this.loginForm
+        )
+        this.$message.success('登陆成功')
+        window.sessionStorage.setItem('token', res.token)
+        this.$router.push('/home')
+      })
+      // 发起请求
+    }
+  },
 
   created() {}
 }

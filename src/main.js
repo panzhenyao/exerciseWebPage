@@ -8,8 +8,38 @@ import './plugins/element.js'
 import 'element-ui/lib/theme-chalk/index.css'
 // 导入全局样式
 import './assets/css/global.css'
+// 导入axios 插件
+import axios from 'axios'
 
 Vue.config.productionTip = false
+// 配置过滤器
+// 引入过滤器
+Vue.filter('dateformat', function (originValue) {
+  const date = new Date(originValue)
+  const y = date.getFullYear()
+  const m = (date.getMonth() + 1 + '').padStart(2, '0')
+  const d = (date.getDate() + '').padStart(2, '0')
+
+  const hh = (date.getHours() + '').padStart(2, '0')
+  const mm = (date.getMinutes() + '').padStart(2, '0')
+  const ss = (date.getSeconds() + '').padStart(2, '0')
+  return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+})
+
+
+// axios 默认配置
+axios.defaults.baseURL =
+  'http://127.0.0.1:7001/'
+// 配置axios
+Vue.prototype.$http = axios
+Vue.config.productionTip = false
+// 配置拦截请求
+axios.interceptors.request.use(config => {
+  // 为请求添加 console.log(config)
+  config.headers.Authorization = window.sessionStorage.getItem('token')
+  // *必须返回配置
+  return config
+})
 
 new Vue({
   store,

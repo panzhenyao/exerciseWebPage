@@ -14,7 +14,7 @@
     </el-input>
   
     <el-select v-model="select" slot="prepend" placeholder="请选择">
-       <template slot="prepend">目录名称</template>
+      
       <el-option label value="1"></el-option>
       <el-option label value="2"></el-option>
       <el-option label value="3"></el-option>
