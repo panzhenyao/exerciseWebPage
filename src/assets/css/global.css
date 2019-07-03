@@ -1,0 +1,46 @@
+/* 全局样式 */
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  min-width: 1366px;
+  background-color: #f4fbff;
+}
+
+/* 特殊样式 */
+.header_searchBtn input {
+  background-color: #c9d4f6;
+  height: 22px;
+  width: 210px;
+  border-radius: 24px;
+}
+.header_searchBtn .el-input__icon {
+  line-height: 0;
+}
+.login-out-Btn {
+  line-height: 0;
+  margin-left: 15px;
+  width: 51px;
+  height: 19px;
+  background-color: #ebeef2;
+  border-radius: 10px;
+}
+.login-out-Btn span {
+  color: #01c6fa;
+  position: relative;
+  right: 8.5px;
+}
+/* item项激活样式 */
+.el-submenu__title:hover {
+  background-image: linear-gradient(90deg, #1493fa, #01c6fa) !important;
+}
+/* 选择文本时填充色为默认 */
+.el-checkbox__input.is-checked + .el-checkbox__label {
+  color: #606266;
+}
+/* 二维码样式 */
+.erweima-box img {
+  width: 100%;
+}
