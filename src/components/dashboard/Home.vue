@@ -89,11 +89,20 @@ export default {
     // 移动到items时获取目标id
     getTargetId(id) {
       console.log(id)
+    },
+    // 获取token
+    getToken() {
+      const tokenStr = window.sessionStorage.getItem('token')
+      if (!tokenStr) {
+        return this.$router.push('/login')
+      }
     }
   },
   computed: {},
 
-  created() {}
+  created() {
+    // this.getToken()
+  }
 }
 </script>
 
