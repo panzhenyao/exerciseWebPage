@@ -21,7 +21,7 @@ const router = new Router({
       redirect: '/users',
       children: [
         { path: '/users', component: Users },
-        { path: '/articles', component: Articles },
+        { path: '/articles', component: Articles }
       ]
     }
   ]
