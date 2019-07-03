@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 // 导入element.js文件
 import './plugins/element.js'
+import './css/global.css'
 
 Vue.config.productionTip = false
 
