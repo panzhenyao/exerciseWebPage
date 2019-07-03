@@ -8,6 +8,7 @@ import Home from './components/dashboard/Home.vue'
 // 后台企业模块
 import Users from './components/user/User.vue'
 import Articles from './components/articles/Articles.vue'
+import Subjects from './components/subjects/Subjects.vue'
 
 Vue.use(Router)
 
@@ -22,6 +23,7 @@ export default new Router({
       children: [
         { path: '/users', component: Users },
         { path: '/articles', component: Articles },
+        { path: '/subjects', component: Subjects },
       ]
     }
   ]
