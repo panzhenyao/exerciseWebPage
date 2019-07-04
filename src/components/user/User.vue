@@ -21,7 +21,7 @@
                 ></el-option>
               </el-select>
               <el-button>清除</el-button>
-              <el-button type="primary">搜索</el-button>
+              <el-button @click="getMockTask" type="primary">搜索</el-button>
             </el-form-item>
           </el-form>
         </el-col>
@@ -180,6 +180,10 @@ export default {
   },
 
   methods: {
+    async getMockTask() {
+      const data = await this.$http.get('http://text.com')
+      console.log(data)
+    },
     handleSizeChange(pageSize) {
       this.pageSize = pageSize
       this.getUsersTable()

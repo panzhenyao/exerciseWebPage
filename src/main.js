@@ -11,7 +11,10 @@ import './assets/css/global.css'
 // 导入axios 插件
 import axios from 'axios'
 
+import './mock'
+
 Vue.config.productionTip = false
+
 // 配置过滤器
 // 引入过滤器
 Vue.filter('dateformat', function(originValue) {
