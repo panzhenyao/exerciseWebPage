@@ -14,7 +14,7 @@ import axios from 'axios'
 Vue.config.productionTip = false
 // 配置过滤器
 // 引入过滤器
-Vue.filter('dateformat', function (originValue) {
+Vue.filter('dateformat', function(originValue) {
   const date = new Date(originValue)
   const y = date.getFullYear()
   const m = (date.getMonth() + 1 + '').padStart(2, '0')
@@ -25,11 +25,12 @@ Vue.filter('dateformat', function (originValue) {
   const ss = (date.getSeconds() + '').padStart(2, '0')
   return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
 })
-
+// 引入js-sha256加密
+const sha256 = require('js-sha256').sha256
+Vue.prototype.$sha256 = sha256
 
 // axios 默认配置
-axios.defaults.baseURL =
-  'http://127.0.0.1:7001/'
+axios.defaults.baseURL = 'http://127.0.0.1:7001/'
 // 配置axios
 Vue.prototype.$http = axios
 Vue.config.productionTip = false

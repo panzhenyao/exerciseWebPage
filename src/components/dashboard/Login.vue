@@ -82,9 +82,13 @@ export default {
         if (!vail) {
           return this.$message.info('请正确填入表单信息')
         }
+        const password = this.$sha256(this.loginForm.password)
         const { data: res } = await this.$http.post(
           '/frame/login',
-          this.loginForm
+          {
+            username: this.loginForm.username,
+            password: password
+          }
         )
         this.$message.success('登陆成功')
         window.sessionStorage.setItem('token', res.token)
